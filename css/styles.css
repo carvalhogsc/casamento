@@ -1,0 +1,69 @@
+.navbar-dark {
+    position: fixed;
+    background-color: transparent;
+    z-index: 9;
+    width: 100vw;
+    font-size: 1.2rem;
+}
+
+.navbar-dark.active {
+    background-color: rgb(13, 70, 13);
+    transition: background-color 1s, opacity 1s;
+}
+
+.navbar-collapse {
+    flex-grow: unset;
+}
+
+.navbar-dark .navbar-nav .nav-link {
+    color: rgba(255, 255, 255, 0.876);
+}
+
+.navbar-dark .navbar-nav .nav-link:hover {
+    color: white;
+    transition: background-color 1s, opacity 1s;
+}
+
+/* On screens that are 992px or less, set the background color to blue */
+@media screen and (max-width: 992px) {
+    .navbar-dark {
+        background-color:  rgb(13, 70, 13);
+        position: unset;
+    }
+}
+
+[class$="-section"] {
+    background-color: rgb(13, 70, 13);
+    background-image: url("http://demo.cakewp.com/elementor-wedding/wp-content/uploads/sites/9/2017/01/Rectangle.png");
+}
+
+[class$="-section"]:nth-child(2n+1) {
+    background-color: rgb(219, 219, 219);
+    background-image: none;
+}
+
+.home-section {
+    background-image: url("../images/chacara.jpeg");
+    background-position: top center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+}
+
+.home-section .container-fluid {
+    z-index: 2;
+}
+
+.home-section > .section-backgorund-overlay {
+    z-index: 0;
+    background-color: #000000;
+    opacity: .5;
+    transition: background 0.3s, border-radius 0.3s, opacity 0.3s;
+}
+
+.home-section .section-backgorund-overlay {
+    height: 100vh;
+    width: 100%;
+    left: 0;
+    position: absolute;
+}
