@@ -11,6 +11,7 @@
   <link rel="stylesheet" type="text/css" href="./css/styles.css" />
 
 </head>
+
 <body>
 
   <nav class="navbar navbar-expand-lg navbar-dark">
@@ -74,17 +75,76 @@
   <section id="couple-section" class="couple-section">
     <div class="container-fluid">
       <div class="row justify-content-center">
-        Sobre os Noivos
+        <div class="col-12 col-sm-5 text-center">
+          <div class="profile">
+            <div class="profile-image">
+              <img src="./images/noiva.jpeg">
+            </div>
+            <div class="profile-tittle">
+              <h1 class="display-6">Caroline</h1>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-sm-2 d-flex align-items-center justify-content-center">
+          <img src="./images/2-Hearts.png">
+        </div>
+        <div class="col-12 col-sm-5 text-center">
+          <div class="profile">
+            <div class="profile-image">
+              <img src="./images/noivo.jpeg">
+            </div>
+            <div class="profile-tittle">
+              <h1 class="display-6">Guilherme</h1>
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
   </section>
 
   <section id="date-section" class="date-section">
     <div class="container-fluid">
       <div class="row justify-content-center">
-        Contagem regressiva
+        <div class="col-12">
+          <div class="date-info">
+            <h1 class="title display-2">Estamos Casando</h1>
+            <h1 class="date display-6">05/02/2022 16:00h</h1>
+          </div>
+        </div>
       </div>
-    </div>
+      <div class="row justify-content-center">
+        <div class="col-6">
+          <div class="counter">
+            <div class="days">
+              <div class="counter-digits">
+                <div id="day0" class="counter-number"></div>
+                <div id="day1" class="counter-number"></div>
+              </div>
+              <p class="h5 text-center">Dias</p>
+            </div>
+            <div class="hours">
+              <div class="counter-digits">
+                <div id="hour0" class="counter-number"></div>
+                <div id="hour1" class="counter-number"></div>
+              </div>
+              <p class="h5 text-center">Horas</p>
+            </div>
+            <div class="minutes">
+              <div class="counter-digits">
+                <div id="minute0" class="counter-number"></div>
+                <div id="minute1" class="counter-number"></div>
+              </div>
+              <p class="h5 text-center">Minutos</p>
+            </div>
+            <div class="seconds">
+              <div class="counter-digits ">
+                <div id="second0" class="counter-number"></div>
+                <div id="second1" class="counter-number"></div>
+              </div>
+              <p class="h5 text-center">Segundos</p>
+            </div>
+          </div>
+        </div>
+      </div>
   </section>
 
   <section id="gifts-section" class="gifts-section">
@@ -102,22 +162,82 @@
       </div>
     </div>
   </section>
-    <script>
-      const navbar = document.querySelector('.navbar-dark')
-      console.log(navbar)
-      window.addEventListener('scroll', function(e) {
-        const lastPosition = window.scrollY
-        if (lastPosition > 50 ) {
-          navbar.classList.add('active')
-        } else if (navbar.classList.contains('active')) {
-          navbar.classList.remove('active')
-        } else {
-          navbar.classList.remove('active')
-        }
-      })
-    </script>
-     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
-     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+  <script>
+    const navbar = document.querySelector('.navbar-dark')
+    window.addEventListener('scroll', function (e) {
+      const lastPosition = window.scrollY
+      if (lastPosition > 50) {
+        navbar.classList.add('active')
+      } else if (navbar.classList.contains('active')) {
+        navbar.classList.remove('active')
+      } else {
+        navbar.classList.remove('active')
+      }
+    })
+
+    const second = 1000;
+    const minute = second * 60;
+    const hour = minute * 60;
+    const day = hour * 24;
+
+    let dayFirstValue = -1
+    let hoursFirstValue = -1
+    let minutesFirstValue = -1
+    let secondsFirstValue = -1
+
+    const lineDay = document.getElementById('counterRow');
+
+    let count_down = new Date('02/05/2022 16:00:00').getTime();
+    let x = setInterval(() => countDown(), second);
+
+    function countDown() {
+      let now = new Date(Date.now()).getTime();
+      let diff = count_down - now;
+      let dayValue = Math.floor(diff / day).toString()
+      let hoursValue = new Intl.NumberFormat("pt-br", { minimumIntegerDigits: 2 }).format(Math.floor(diff % day / hour));
+      let minutesValue = new Intl.NumberFormat("pt-br", { minimumIntegerDigits: 2 }).format(Math.floor(diff % hour / minute));
+      let secondsValue = new Intl.NumberFormat("pt-br", { minimumIntegerDigits: 2 }).format(Math.floor(diff % minute / second));
+
+      if (dayFirstValue != dayValue || dayFirstValue == -1) {
+        dayFirstValue = dayValue
+        const arrayDays = dayValue.split("")
+        arrayDays.forEach((value, index) => {
+          document.getElementById(`day${index}`).innerText = `${value}`
+        })
+      }
+
+      if (hoursFirstValue != hoursValue || hoursFirstValue == -1) {
+        hoursFirstValue = hoursValue
+        const arrayHours = hoursValue.split("")
+        arrayHours.forEach((value, index) => {
+          document.getElementById(`hour${index}`).innerText = `${value}`
+        })
+      }
+
+      if (minutesFirstValue != minutesValue || hoursFirstValue == -1) {
+        minutesFirstValue = minutesValue
+        const arrayHours = minutesValue.split("")
+        arrayHours.forEach((value, index) => {
+          document.getElementById(`minute${index}`).innerText = `${value}`
+        })
+      }
+
+      if (secondsFirstValue != secondsValue || secondsFirstValue == -1) {
+        secondsFirstValue = secondsValue
+        const arraySeconds = secondsValue.split("")
+        arraySeconds.forEach((value, index) => {
+          document.getElementById(`second${index}`).innerText = `${value}`
+        })
+      }
+
+    }
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"
+    integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
+    integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13"
+    crossorigin="anonymous"></script>
 </body>
 
 </html>
