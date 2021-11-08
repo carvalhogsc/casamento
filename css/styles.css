@@ -96,6 +96,7 @@
 .counter {
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
     justify-content: space-evenly;
     height: 100%;
 }
@@ -109,8 +110,8 @@
     border-width: 0px;
     border-style: solid;
     background: rgba(255, 255, 255, 0.2);
-    font-size: 56px;
-    width: 50px;
+    font-size: 3rem;
+    padding: 0 8px;
     margin: 0 5px;
     text-align: center;
 }
