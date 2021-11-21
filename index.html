@@ -12,7 +12,7 @@
 
 </head>
 
-<body>
+<body onload="showContador()" onunload="hiddenContador()">
 
   <nav class="navbar navbar-expand-lg navbar-dark">
     <div class="container-fluid justify-content-around">
@@ -113,7 +113,7 @@
       </div>
       <div class="row justify-content-center">
         <div class="col-1 col-sm-1 col-md-12">
-          <div class="counter">
+          <div class="counter" id="counter">
             <div class="days">
               <div class="counter-digits">
                 <div id="day0" class="counter-number"></div>
@@ -129,16 +129,44 @@
               <p class="h5 text-center">Horas</p>
             </div>
             <div class="minutes">
-              <div class="counter-digits">
-                <div id="minute0" class="counter-number"></div>
-                <div id="minute1" class="counter-number"></div>
+              <div class="counter-digits ">
+                <div id="minute0-wraper" class="counter-number">
+                  <div id="minute0" class="number">
+
+                  </div>
+                  <div id="minute0-next">
+
+                  </div>
+                </div>
+                <div id="minute1-wraper" class="counter-number">
+                  <div id="minute1" class="number">
+
+                  </div>
+                  <div id="minute1-next">
+
+                  </div>
+                </div>
               </div>
               <p class="h5 text-center">Minutos</p>
             </div>
             <div class="seconds">
               <div class="counter-digits ">
-                <div id="second0" class="counter-number"></div>
-                <div id="second1" class="counter-number"></div>
+                <div id="second0-wraper" class="counter-number">
+                  <div id="second0" class="number">
+
+                  </div>
+                  <div id="second0-next">
+
+                  </div>
+                </div>
+                <div id="second1-wraper" class="counter-number">
+                  <div id="second1" class="number">
+
+                  </div>
+                  <div id="second1-next">
+
+                  </div>
+                </div>
               </div>
               <p class="h5 text-center">Segundos</p>
             </div>
@@ -150,7 +178,17 @@
   <section id="gifts-section" class="gifts-section">
     <div class="container-fluid">
       <div class="row justify-content-center">
-        Lista de Presentes
+        <div
+          class="d-flex position-relative justify-content-center align-items-center flex-wrap flex-md-nowrap text-center text-md-start">
+          <img src="./images/presentes-de-casamento.png" class="img-fluid flex-shrink-0 me-5" alt="...">
+          <div>
+            <h1 class="mt-1 display-4">Quer nos presentear ?</h1>
+            <p class="display-6">Nós preparamos uma lista para que você possa escolher um presente para nos encantar!
+            </p>
+            <a href="https://www.querodecasamento.com.br/lista-de-casamento/gui-ca" target="_blank"
+              class="btn btn-success stretched-link">Ir para lista de presentes</a>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -163,6 +201,12 @@
     </div>
   </section>
   <script>
+    let x = 0
+    let s1 = 0
+    let s0 = 0
+    let m1 = 0
+    let m0 = 0
+
     const navbar = document.querySelector('.navbar-dark')
     window.addEventListener('scroll', function (e) {
       const lastPosition = window.scrollY
@@ -175,62 +219,170 @@
       }
     })
 
-    const second = 1000;
-    const minute = second * 60;
-    const hour = minute * 60;
-    const day = hour * 24;
+    function showContador() {
+      document.getElementById('counter').style.display = 'none';
+      pauseContador()
+      startContador()
+      setTimeout(function () {
+        document.getElementById('counter').style.display = 'flex';
+      }, 1000);
 
-    let dayFirstValue = -1
-    let hoursFirstValue = -1
-    let minutesFirstValue = -1
-    let secondsFirstValue = -1
+    }
 
-    const lineDay = document.getElementById('counterRow');
+    function hiddenContador() {
+      pauseContador();
+      document.getElementById('counter').style.display = 'none';
+    }
 
-    let count_down = new Date('02/05/2022 16:00:00').getTime();
-    let x = setInterval(() => countDown(), second);
 
-    function countDown() {
-      let now = new Date(Date.now()).getTime();
-      let diff = count_down - now;
-      let dayValue = Math.floor(diff / day).toString()
-      let hoursValue = new Intl.NumberFormat("pt-br", { minimumIntegerDigits: 2 }).format(Math.floor(diff % day / hour));
-      let minutesValue = new Intl.NumberFormat("pt-br", { minimumIntegerDigits: 2 }).format(Math.floor(diff % hour / minute));
-      let secondsValue = new Intl.NumberFormat("pt-br", { minimumIntegerDigits: 2 }).format(Math.floor(diff % minute / second));
+    function startContador() {
+      const second = 1000;
+      const minute = second * 60;
+      const hour = minute * 60;
+      const day = hour * 24;
 
-      if (dayFirstValue != dayValue || dayFirstValue == -1) {
-        dayFirstValue = dayValue
-        const arrayDays = dayValue.split("")
-        arrayDays.forEach((value, index) => {
-          document.getElementById(`day${index}`).innerText = `${value}`
-        })
+      let dayFirstValue = -1
+      let hoursFirstValue = -1
+      let minutesFirstValue = -1
+      let secondsFirstValue = -1
+
+      const lineDay = document.getElementById('counterRow');
+
+      let count_down = new Date('02/05/2022 16:00:00').getTime();
+      x = setInterval(() => countDown(), second);
+      let auxs1 = 0
+      let auxs0 = 0
+      let auxm1 = 0
+      let auxm0 = 0
+
+      function changeNumberSecond1() {
+        while (auxs1 < -72) {
+          document.getElementById(`second1`).style.top = `${auxs1}px`
+          document.getElementById(`second1-next`).style.top = `${auxs1}px`
+          auxs1 = auxs1 - 2
+        }
+        auxs1 = 0
       }
 
-      if (hoursFirstValue != hoursValue || hoursFirstValue == -1) {
-        hoursFirstValue = hoursValue
-        const arrayHours = hoursValue.split("")
-        arrayHours.forEach((value, index) => {
-          document.getElementById(`hour${index}`).innerText = `${value}`
-        })
+      function changeNumberSecond0() {
+        while (auxs0 < -72) {
+          document.getElementById(`second0`).style.top = `${auxs0}px`
+          document.getElementById(`second0-next`).style.top = `${auxs0}px`
+          auxs0 = auxs0 - 2
+        }
+        auxs0 = 0
       }
 
-      if (minutesFirstValue != minutesValue || hoursFirstValue == -1) {
-        minutesFirstValue = minutesValue
-        const arrayHours = minutesValue.split("")
-        arrayHours.forEach((value, index) => {
-          document.getElementById(`minute${index}`).innerText = `${value}`
-        })
+      function changeNumberMinute1() {
+        document.getElementById(`minute1`).style.top = `${auxm1}px`
+        document.getElementById(`minute1-next`).style.top = `${auxm1}px`
+        auxm1 = auxm1 - 2
+
+        if (auxm1 < -72) {
+          clearInterval(m1)
+          auxm1 = 0
+        }
       }
 
-      if (secondsFirstValue != secondsValue || secondsFirstValue == -1) {
-        secondsFirstValue = secondsValue
-        const arraySeconds = secondsValue.split("")
-        arraySeconds.forEach((value, index) => {
-          document.getElementById(`second${index}`).innerText = `${value}`
-        })
+      function changeNumberMinute0() {
+        document.getElementById(`minute0`).style.top = `${auxm0}px`
+        document.getElementById(`minute0-next`).style.top = `${auxm0}px`
+        auxm0 = auxm0 - 2
+
+        if (auxm0 < -72) {
+          clearInterval(m0)
+          auxm0 = 0
+        }
+      }
+
+
+      function countDown() {
+        let now = new Date(Date.now()).getTime();
+        let diff = count_down - now;
+        let dayValue = Math.floor(diff / day).toString()
+        let hoursValue = new Intl.NumberFormat("pt-br", { minimumIntegerDigits: 2 }).format(Math.floor(diff % day / hour));
+        let minutesValue = new Intl.NumberFormat("pt-br", { minimumIntegerDigits: 2 }).format(Math.floor(diff % hour / minute));
+        let secondsValue = new Intl.NumberFormat("pt-br", { minimumIntegerDigits: 2 }).format(Math.floor(diff % minute / second));
+
+        if (dayFirstValue != dayValue || dayFirstValue == -1) {
+          dayFirstValue = dayValue
+          const arrayDays = dayValue.split("")
+          arrayDays.forEach((value, index) => {
+            document.getElementById(`day${index}`).innerText = `${value}`
+          })
+        }
+
+        if (hoursFirstValue != hoursValue || hoursFirstValue == -1) {
+          hoursFirstValue = hoursValue
+          const arrayHours = hoursValue.split("")
+          arrayHours.forEach((value, index) => {
+            document.getElementById(`hour${index}`).innerText = `${value}`
+          })
+        }
+
+        if (minutesFirstValue != minutesValue || hoursFirstValue == -1) {
+          minutesFirstValue = minutesValue
+          const arrayMinutes = minutesValue.split("")
+          if (arrayMinutes[1] == 0) {
+            changeNumberMinute0()
+          }
+          changeNumberMinute1()
+          arrayMinutes.forEach((value, index) => {
+            document.getElementById(`minute${index}`).innerText = `${value}`
+            document.getElementById(`minute${index}`).style.top = 0
+            document.getElementById(`minute${index}-next`).style.top = 0
+            if (index == 1) {
+              document.getElementById(`minute${index}-next`).innerText = `${value - 1 == - 1 ? 9 : value - 1}`
+            } else {
+              document.getElementById(`minute${index}-next`).innerText = `${value - 1 == - 1 ? 5 : value - 1}`
+
+            }
+          })
+        }
+
+        if (secondsFirstValue != secondsValue || secondsFirstValue == -1) {
+          secondsFirstValue = secondsValue
+          const arraySeconds = secondsValue.split("")
+          if (arraySeconds[1] == 0) {
+            changeNumberSecond0()
+          }
+          changeNumberSecond1()
+          arraySeconds.forEach((value, index) => {
+            document.getElementById(`second${index}`).innerText = `${value}`
+            document.getElementById(`second${index}`).style.top = 0
+            document.getElementById(`second${index}-next`).style.top = 0
+            if (index == 1) {
+              document.getElementById(`second${index}-next`).innerText = `${value - 1 == - 1 ? 9 : value - 1}`
+            } else {
+              document.getElementById(`second${index}-next`).innerText = `${value - 1 == - 1 ? 5 : value - 1}`
+
+            }
+          })
+        }
+
       }
 
     }
+
+    function pauseContador() {
+      clearInterval(x)
+      clearInterval(s0)
+      clearInterval(s1)
+      clearInterval(m0)
+      clearInterval(m1)
+    }
+
+    function handleVisibilityChange() {
+      if (document.hidden) {
+        hiddenContador();
+      } else {
+        showContador();
+      }
+    }
+
+    document.addEventListener("visibilitychange", handleVisibilityChange, false);
+
+
   </script>
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"
     integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB"

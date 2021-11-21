@@ -97,12 +97,22 @@
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    justify-content: space-evenly;
+    justify-content: center;
     height: 100%;
+}
+
+.counter > div {
+    padding: 0 15px;
 }
 
 .counter-digits {
     display: flex;
+    overflow: hidden;
+    height: 72px;
+}
+
+.counter-digits .number {
+    position: relative;
 }
 
 .counter .counter-number {
@@ -120,4 +130,16 @@
     margin-top: 0.8rem;
     text-align: center;
 }
-    
+
+.gifts-section {
+    padding: 10vh 0;
+}
+
+div[id$=-next] {
+    position: relative;
+}
+
+.btn-success {
+    background-color: rgb(13, 70, 13);
+    border-color: rgb(13, 70, 13);
+}
