@@ -3,6 +3,7 @@ const myModalInput = new bootstrap.Modal(document.getElementById("modalInput"), 
 const myModalConfirm = new bootstrap.Modal(document.getElementById("modalConfirm"), {});
 
 async function doGet() {
+    document.getElementById('submit-list').setAttribute('disabled', true)
     const name = document.getElementById('inputName');
     const lastname = document.getElementById('inputLastName');
     const cellphone = document.getElementById('inputCellphone');
@@ -27,6 +28,7 @@ async function doGet() {
 }
 
 async function doPost() {
+    document.getElementById('button-input').setAttribute('disabled', true)
     const body = createBody()
 
     const url = `${urlAPI}`
