@@ -50,10 +50,8 @@ const createMembersConfirm = (listMember) => {
 
 const clearDataModal = () => {
      document.getElementById('members-list').innerHTML = '';
-     document.getElementById('members-listConfirm').innerHTML = '';
      document.getElementById('submit-list').removeAttribute('disabled')
      document.getElementById('button-input').removeAttribute('disabled')
-
 }
 
 const createBody = () => {

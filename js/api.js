@@ -4,6 +4,7 @@ const myModalConfirm = new bootstrap.Modal(document.getElementById("modalConfirm
 
 async function doGet() {
     document.getElementById('submit-list').setAttribute('disabled', true)
+    document.getElementById('members-listConfirm').innerHTML = '';
     const name = document.getElementById('inputName');
     const lastname = document.getElementById('inputLastName');
     const cellphone = document.getElementById('inputCellphone');
