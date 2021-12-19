@@ -1,3 +1,7 @@
+window.addEventListener('hidden.bs.modal', function (e) {
+    clearDataModal()
+})
+
 const createMembersList = (listMember) => {
     let parent = document.getElementById('members-list');
 
