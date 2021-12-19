@@ -16,11 +16,6 @@ window.addEventListener('scroll', function (e) {
     }
 })
 
-document.getElementById("form-list").addEventListener("click", function (event) {
-    event.preventDefault()
-    doGet();
-});
-
 function showContador() {
     document.getElementById('counter').style.display = 'none';
     pauseContador()
