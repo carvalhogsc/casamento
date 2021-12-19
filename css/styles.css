@@ -80,7 +80,7 @@
     max-width: 50vmin;
 }
 
-.date-section {
+.date-section, .list-section {
     padding: 10vh 0;
 }
 
@@ -91,6 +91,21 @@
     align-items: center;
     height: 100%;
     padding-bottom: 10vh;
+}
+
+.list-section .date-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    line-break: normal;
+    padding-bottom: 10vh;
+}
+
+.sub {
+    text-align: justify;
+    width: 80%;
 }
 
 .counter {
@@ -142,4 +157,12 @@ div[id$=-next] {
 .btn-success {
     background-color: rgb(13, 70, 13);
     border-color: rgb(13, 70, 13);
+}
+
+.form label {
+    font-weight: bold;
+}
+
+.form .form-text {
+    color: darkgreen;
 }
