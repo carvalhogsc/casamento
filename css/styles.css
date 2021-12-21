@@ -80,7 +80,7 @@
     max-width: 50vmin;
 }
 
-.date-section, .list-section {
+.date-section, .list-section, .gallery-section, .gifts-section {
     padding: 10vh 0;
 }
 
@@ -93,18 +93,8 @@
     padding-bottom: 10vh;
 }
 
-.list-section .date-info {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-    line-break: normal;
-    padding-bottom: 10vh;
-}
-
 .sub {
-    text-align: justify;
+    text-align: center;
     width: 80%;
 }
 
@@ -146,10 +136,6 @@
     text-align: center;
 }
 
-.gifts-section {
-    padding: 10vh 0;
-}
-
 div[id$=-next] {
     position: relative;
 }
@@ -165,4 +151,24 @@ div[id$=-next] {
 
 .form .form-text {
     color: darkgreen;
+}
+
+.photo-gallery .item {
+    margin-bottom: calc(var(--bs-gutter-x) * .5)
+}
+
+.gallery-section a {
+    all: unset;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.gallery-section a {
+    all: unset;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.gallery-section img {
+    border-radius: 12px;
 }
