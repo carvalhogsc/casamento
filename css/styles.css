@@ -77,10 +77,10 @@
 
 .profile .profile-image img {
     border-radius: 100%;
-    max-width: 50vmin;
+    max-width: 35vmin;
 }
 
-.date-section, .list-section, .gallery-section, .gifts-section {
+.date-section, .list-section, .gallery-section, .gifts-section, .place-section {
     padding: 10vh 0;
 }
 
@@ -171,4 +171,13 @@ div[id$=-next] {
 
 .gallery-section img {
     border-radius: 12px;
+}
+
+.place-section iframe {
+    width: 100%;
+    min-height: 35vh;
+}
+
+.place-section .place > div {
+    padding-bottom: 18px;
 }
