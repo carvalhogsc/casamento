@@ -173,7 +173,7 @@ div[id$=-next] {
     border-radius: 12px;
 }
 
-.place-section iframe {
+iframe {
     width: 100%;
     min-height: 35vh;
 }
