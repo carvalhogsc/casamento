@@ -45,11 +45,13 @@
 }
 
 .home-section {
-    background-image: url("../images/chacara.jpeg");
-    background-position: top center;
+    background-image: url("../images/pre/05.jpeg");
+    background-position: center center;
     background-repeat: no-repeat;
     background-size: cover;
     height: 100vh;
+    filter: contrast(1.5);
+    
 }
 
 .home-section .container-fluid {
@@ -59,7 +61,7 @@
 .home-section > .section-backgorund-overlay {
     z-index: 0;
     background-color: #000000;
-    opacity: .5;
+    opacity: 0.5;    
     transition: background 0.3s, border-radius 0.3s, opacity 0.3s;
 }
 
