@@ -45,7 +45,7 @@ function startContador() {
 
     const lineDay = document.getElementById('counterRow');
 
-    let count_down = new Date('02/05/2022 16:00:00').getTime();
+    let count_down = new Date('04/15/2023 11:00:00').getTime();
     x = setInterval(() => countDown(), second);
     let auxs1 = 0
     let auxs0 = 0
