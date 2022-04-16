@@ -104,16 +104,28 @@ function startContador() {
         if (dayFirstValue != dayValue || dayFirstValue == -1) {
             dayFirstValue = dayValue
             const arrayDays = dayValue.split("")
+            const elementDays = document.getElementById('days')
+            elementDays.textContent = ''
             arrayDays.forEach((value, index) => {
-                document.getElementById(`day${index}`).innerText = `${value}`
+                const day = document.createElement('div')
+                day.id = `day${index}`
+                day.classList.add('counter-number')
+                day.innerText = `${value}`
+                elementDays.append(day)
             })
         }
 
         if (hoursFirstValue != hoursValue || hoursFirstValue == -1) {
             hoursFirstValue = hoursValue
             const arrayHours = hoursValue.split("")
+            const elementHours = document.getElementById('hours')
+            elementHours.textContent = ''
             arrayHours.forEach((value, index) => {
-                document.getElementById(`hour${index}`).innerText = `${value}`
+                const hour = document.createElement('div')
+                hour.id = `hour${index}`
+                hour.classList.add('counter-number')
+                hour.innerText = `${value}`
+                elementHours.append(hour)
             })
         }
 
